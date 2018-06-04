@@ -17,8 +17,8 @@ class CreateJurusansTable extends Migration
             $table->increments('id');
             $table->string('jurusan');
             $table->string('ket');
-            $table->unsignedInteger('struktur_organisasi_id');
-            $table->foreign('struktur_organisasi_id')->references('id')->on('struktur_organisasis')->onDelete('CASCADE');
+            $table->unsignedInteger('kurikulum_id');
+            $table->foreign('kurikulum_id')->references('id')->on('kurikulums')->onDelete('CASCADE');
             $table->timestamps();
         });
     }

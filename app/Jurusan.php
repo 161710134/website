@@ -6,9 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jurusan extends Model
 {
-    protected $fillable = array('jurusan' , 'ket' , 'struktur_organisasi_id');
+    protected $fillable = array('jurusan' , 'ket' , 'kurikulum_id');
 
-    public function strukturorganisasi(){
-        return $this->belongsTo('App\StrukturOrganissasi', 'struktur_organisasi_id');
+    public function kurikulum(){
+        return $this->belongsTo('App\Kurikulum', 'kurikulum_id');
+    }
+    public function industri(){
+        return $this->hasMany('App\Industri', 'industri_id');
     }
 }

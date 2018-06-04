@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Ekstrakulikuler;
+use App\Berita;
 use Illuminate\Http\Request;
 
-class EkstrakulikulerController extends Controller
+class BeritaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class EkstrakulikulerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Ekstrakulikuler  $ekstrakulikuler
+     * @param  \App\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function show(Ekstrakulikuler $ekstrakulikuler)
+    public function show(Berita $berita)
     {
         //
     }
@@ -52,10 +52,10 @@ class EkstrakulikulerController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Ekstrakulikuler  $ekstrakulikuler
+     * @param  \App\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function edit(Ekstrakulikuler $ekstrakulikuler)
+    public function edit(Berita $berita)
     {
         //
     }
@@ -64,10 +64,10 @@ class EkstrakulikulerController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Ekstrakulikuler  $ekstrakulikuler
+     * @param  \App\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Ekstrakulikuler $ekstrakulikuler)
+    public function update(Request $request, Berita $berita)
     {
         //
     }
@@ -75,10 +75,10 @@ class EkstrakulikulerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Ekstrakulikuler  $ekstrakulikuler
+     * @param  \App\Berita  $berita
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Ekstrakulikuler $ekstrakulikuler)
+    public function destroy(Berita $berita)
     {
         //
     }

@@ -6,12 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Prestasi extends Model
 {
-    protected $table = 'prestasis';
-    protected $fillable = array('bidang_prestasi' , 'prestasi' , 'ket');
-
+    protected $fillable = array('bidang_eskul' , 'prestasi' , 'tgl_perolehan' , 'eskul_id');
     
-    public function ekstrakulikuler() {
-        return $this->hasMany('App\Ekstrakulikuler', 'prestasi_id');
-        
-    }
+        public function eskul(){
+            return $this->hasMany('App\Eskul', 'eskul_id');
 }

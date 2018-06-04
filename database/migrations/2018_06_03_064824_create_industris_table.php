@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateKurikulumsTable extends Migration
+class CreateIndustrisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateKurikulumsTable extends Migration
      */
     public function up()
     {
-        Schema::create('kurikulums', function (Blueprint $table) {
+        Schema::create('industris', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('pembelajaran');
-            $table->string('jurusan');
-            $table->string('struktur_organisasi');
-            $table->unsignedInteger('profil_id');
-            $table->foreign('profil_id')->references('id')->on('profils')->onDelete('CASCADE');
+            $table->string('industri');
+            $table->text('alamat');
+            $table->unsignedInteger('jurusan_id');
+            $table->foreign('jurusan_id')->references('id')->on('jurusans')->onDelete('CASCADE');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateKurikulumsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('kurikulums');
+        Schema::dropIfExists('industris');
     }
 }

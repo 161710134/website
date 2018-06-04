@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class StrukturOrganisasi extends Model
 {
-    protected $fillable = ('nama' , 'jabatan' , 'jurusan_id');
+    protected $fillable = array('nama' , 'jabatan' , 'guru_staf_id');
 
-    public function jurusan(){
-        return $this->hasOne('App\Jurusan', 'jurusan_id');
+
+    public function guru_staf(){
+        return $this->hasMany('App\GuruStaf', 'guru_staf_id');
     }
 }
