@@ -18,8 +18,6 @@ class CreateKurikulumsTable extends Migration
             $table->string('pembelajaran');
             $table->string('jurusan');
             $table->string('struktur_organisasi');
-            $table->unsignedInteger('profil_id');
-            $table->foreign('profil_id')->references('id')->on('profils')->onDelete('CASCADE');
             $table->timestamps();
         });
     }

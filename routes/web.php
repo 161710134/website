@@ -18,3 +18,19 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('eskul', 'EskulController@index');
+Route::get('prestasi', 'PrestasiController@index');
+
+
+
+
+
+
+
+
+
+
+Route::get('cek', function(){
+    return view('layouts.admin');
+});

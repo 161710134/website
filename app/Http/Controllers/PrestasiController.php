@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Prestasi;
+Use App\Prestasi;
+Use App\Eskul;
 use Illuminate\Http\Request;
 
 class PrestasiController extends Controller
@@ -14,7 +14,8 @@ class PrestasiController extends Controller
      */
     public function index()
     {
-        //
+        $prestasi = Prestasi::all();
+        return view('prestasi.index',compact('prestasis'));
     }
 
     /**
@@ -24,7 +25,7 @@ class PrestasiController extends Controller
      */
     public function create()
     {
-        //
+        return view('prestasi.create');
     }
 
     /**
@@ -35,51 +36,79 @@ class PrestasiController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'bidang_eskul' => 'required|max:255',
+            'prestasi' => 'required|max:255',
+            'tgl_perolehan' => 'required|min:10',
+            
+        ]);
+
+        $prestasi = new Pretasi;
+        $prestasi->bidang_eskul = $request->bidang_eskul;
+        $prestasi->hari = $request->prestasi;
+        $prestasi->tgl_perolehan = $request->tgl_perolehan;
+        $prestasi->save();
+        return redirect()->route('prestasi.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Prestasi  $prestasi
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Prestasi $prestasi)
+    public function show($id)
     {
-        //
+        $prestasi = Prestasi::findOrFail($id);
+        return view('prestasi.show',compact('prestasis'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Prestasi  $prestasi
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Prestasi $prestasi)
+    public function edit($id)
     {
-        //
+        $prestasi = Prestasi::findOrFail($id);
+        return view('prestasi.edit',compact('prestasis'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Prestasi  $prestasi
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Prestasi $prestasi)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'bidang_eskul' => 'required|max:255',
+            'prestasi' => 'required|min:255',
+            'tgl_perolehan' => 'required|min:10',
+        ]);
+
+        // update data berdasarkan id
+        $prestasi = Prestasi::findOrFail($id);
+        $prestasi->bidang_eskul = $request->bidang_eskul;
+        $prestasi->prestasi = $request->prestasi;
+        $prestassi->tgl_perolehan = $request->tgl_perolehan;
+        $prestasi->save();
+        return redirect()->route('prestasi.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Prestasi  $prestasi
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Prestasi $prestasi)
+    public function destroy($id)
     {
-        //
+        $prestasi = Prestasi::findOrFail($id);
+        $prestasi->delete();
+        return redirect()->route('prestasi.index');
     }
 }

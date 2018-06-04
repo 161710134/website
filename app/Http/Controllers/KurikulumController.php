@@ -14,7 +14,8 @@ class KurikulumController extends Controller
      */
     public function index()
     {
-        //
+        $kurikulum = Kurikulum::all();
+        return view('kurikulum.index',compact('kurikulums'));
     }
 
     /**
@@ -24,7 +25,7 @@ class KurikulumController extends Controller
      */
     public function create()
     {
-        //
+        return view('kurikulum.create');
     }
 
     /**
@@ -35,7 +36,19 @@ class KurikulumController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'pembelajaran' => 'required|unique:kurikulums|max:255',
+            'jurusan' => 'required|min:6',
+            'struktur_organisasi' => 'required|min:6',
+            
+        ]);
+
+        $kurikulum = new Kurikulum;
+        $kurikulum->pembelajaran = $request->pembelajaran;
+        $kurikulum->jurusan = $request->jurusan;
+        $kurikulum->struktur_organisasi = $request->struktur_organisasi;
+        $kurikulum->save();
+        return redirect()->route('kurikulum.index');
     }
 
     /**
@@ -46,7 +59,8 @@ class KurikulumController extends Controller
      */
     public function show(Kurikulum $kurikulum)
     {
-        //
+        $kurikulum = Kurikulum::findOrFail($id);
+        return view('kurikulum.show',compact('kurikulums'));
     }
 
     /**
@@ -57,7 +71,8 @@ class KurikulumController extends Controller
      */
     public function edit(Kurikulum $kurikulum)
     {
-        //
+        $kurikulum = Kurikulum::findOrFail($id);
+        return view('kurikulum.edit',compact('kurikulums'));
     }
 
     /**
@@ -69,7 +84,19 @@ class KurikulumController extends Controller
      */
     public function update(Request $request, Kurikulum $kurikulum)
     {
-        //
+        $this->validate($request,[
+            'pembelajaran' => 'required|unique:kurikulums|max:255',
+            'jurusan' => 'required|min:6',
+            'struktur_organisasi' => 'required|min:6',
+        ]);
+
+        // update data berdasarkan id
+        $kurikulum = Kurikulum::findOrFail($id);
+        $kurikulum->pembelajaran = $request->pembelajaran;
+        $kurikulum->jurusan = $request->jurusan;
+        $kurikulum->struktur_organisasi = $request->struktur_organisasi;
+        $kurikulum->save();
+        return redirect()->route('kurikulum.index');
     }
 
     /**
@@ -80,6 +107,8 @@ class KurikulumController extends Controller
      */
     public function destroy(Kurikulum $kurikulum)
     {
-        //
+        $kurikulum = Kurikulum::findOrFail($id);
+        $kurikulum->delete();
+        return redirect()->route('kurikulum.index');
     }
 }

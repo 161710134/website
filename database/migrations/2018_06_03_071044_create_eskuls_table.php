@@ -18,8 +18,6 @@ class CreateEskulsTable extends Migration
             $table->string('eskul');
             $table->string('hari');
             $table->string('keterangan');
-            $table->unsignedInteger('profil_id');
-            $table->foreign('profil_id')->references('id')->on('profils')->onDelete('CASCADE');
             $table->timestamps();
         });
     }
